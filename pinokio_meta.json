@@ -1,0 +1,8 @@
+{
+  "name": "YuE (for Windows, tuned for RTX 4060 Ti 16GB)",
+  "version": "0.2",
+  "platform": "win32",
+  "description": "Pinokio app to install and run sdbds/YuE-for-windows, tuned defaults for a single RTX 4060 Ti 16GB GPU. Uses Torch 2.5.1+cu124 and requirements-uv.txt.",
+  "author": "assistant",
+  "entrypoint": "start.json"
+}

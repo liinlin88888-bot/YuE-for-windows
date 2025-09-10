@@ -1,0 +1,10 @@
+{
+  "type": "reset",
+  "message": "Reset: remove virtualenv and outputs (Windows).",
+  "platform": "win32",
+  "steps": [
+    { "shell.run": "Stop-Process -Name python -ErrorAction SilentlyContinue; Remove-Item -Recurse -Force .\\.venv || Write-Host '.venv removed'" },
+    { "shell.run": "Remove-Item -Recurse -Force YuE\\output || Write-Host 'output removed'" },
+    { "shell.run": "Write-Host 'Reset complete.'" }
+  ]
+}

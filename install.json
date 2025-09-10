@@ -1,0 +1,19 @@
+{
+  "type": "install",
+  "message": "Install YuE and dependencies (Windows, PowerShell). Uses requirements-uv.txt with Torch 2.5.1+cu124 (Python 3.10 required).",
+  "platform": "win32",
+  "steps": [
+    { "shell.run": "git --version || (Write-Host 'git not found; please install Git for Windows' ; exit 1)" },
+    { "shell.run": "git lfs install || (Write-Host 'git-lfs not found; please install Git LFS' ; exit 0)" },
+    { "shell.run": "if (-Not (Test-Path .\\YuE)) { git clone https://github.com/sdbds/YuE-for-windows YuE } else { Write-Host 'YuE folder exists, pulling latest...' ; cd YuE ; git pull }" },
+    { "shell.run": "cd YuE ; git lfs pull || Write-Host 'git lfs pull may require Git LFS installed or HuggingFace access'" },
+    { "shell.run": "cd YuE ; python -m venv .venv || exit 1" },
+    { "shell.run": ".\\.venv\\Scripts\\Activate.ps1; python -m pip install -U pip setuptools wheel" },
+
+    { "shell.run": ".\\.venv\\Scripts\\Activate.ps1; python -m pip install torch==2.5.1+cu124 torchaudio==2.5.1+cu124 --index-url https://download.pytorch.org/whl/cu124" },
+
+    { "shell.run": ".\\.venv\\Scripts\\Activate.ps1; python -m pip install -r YuE\\requirements-uv.txt" },
+
+    { "shell.run": ".\\.venv\\Scripts\\Activate.ps1; Write-Host 'Install complete. Ensure Python version is 3.10 and NVIDIA driver supports CUDA 12.4.'" }
+  ]
+}
